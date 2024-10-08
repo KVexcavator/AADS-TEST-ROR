@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  ror7-test:
+    build:
+      dockerfile: Dockerfile.dev
+    container_name: ror7-test
+    command: rails server -b 0.0.0.0
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env/development/database
+      - .env/development/ror7-test
+    volumes:
+      - .:/usr/src/app
+    restart: unless-stopped
+    depends_on:
+      - database
+      - redis
+    networks:
+      - ror7-test-network
+    stdin_open: true
+    tty: true
+
+  redis:
+    image: redis:7.0.9
+    command: redis-server
+    container_name: ror7-test-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - ror7-test-network
+
+  database:
+    image: postgres:15.2-alpine
+    container_name: ror7-test-database
+    restart: unless-stopped
+    env_file:
+      - .env/development/database
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - ror7-test-network
+    stdin_open: true
+    tty: true
+
+volumes:
+  db_data:
+  redis_data:
+
+networks:
+  ror7-test-network:
+    driver: bridge

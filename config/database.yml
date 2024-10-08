@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch('DATABASE_HOST') %>
+  username: <%= ENV.fetch('POSTGRES_USER') %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') %>
+  database: <%= ENV.fetch('POSTGRES_DB') %>
+  pool: 5
+  variables:
+    statement_timeout: 5000
+
+development:
+  <<: *default
+  database: ror7-test-dev
+
+test:
+  <<: *default
+  database: ror7-test-test
+
+production:
+  <<: *default
+  database: ror7-test-prod
