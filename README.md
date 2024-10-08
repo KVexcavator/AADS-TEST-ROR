@@ -18,4 +18,11 @@ https://github.com/KVexcavator/AADS-TEST-ROR
 
 Это может быть слишком длинное задание. Тогда можно выбрать только одну половину — либо подписки, либо комментарии.
 
+# Примеры команд
+
+$ docker compose up --build
+$ docker compose exec ror7-test rails db:create
+$ docker compose exec ror7-test rails g model User username
+$ docker compose exec ror7-test bundle exec rspec
+
 
