@@ -2,15 +2,15 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
 <br/>
-<h3>Post comment:</h3>
+<h3>Сomment on post:</h3>
   <%= render 'comments/form', commentable: @post, parent_comment_id: nil %>
 <br/>
-<br/>
+<hr>
 <h3>List comments:</h3>
 <% @post.comment_threads.each do |comment| %>
-  <div>
-    <%= render partial: 'comments/comment', locals: { comment: comment } %>
-  </div>
+  <p><strong><%= comment.user.nickname %>:</strong> <%= comment.body %></p>  
+  <%= render 'comments/form', commentable: comment.commentable, parent_comment_id: comment.id %> 
+  =============================
 <% end %>
 
 
