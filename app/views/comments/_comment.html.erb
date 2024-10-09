@@ -1,0 +1,16 @@
+<div class="nested-comment">
+  <p><strong><%= comment.user.nickname %>:</strong> <%= comment.body %></p>
+
+  <% if comment.has_children? %>
+    <% comment.children.each do |child| %>
+      <%= render partial: 'comments/comment', locals: { comment: child } %>
+    <% end %>
+  <% end %>
+
+  <%= render 'comments/form', commentable: comment.commentable, parent_comment_id: comment.id %>
+  <hr>
+</div>
+
+
+
+

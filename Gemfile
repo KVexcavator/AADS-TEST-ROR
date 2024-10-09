@@ -72,3 +72,5 @@ end
 
 gem "faker", "~> 3.1"
 gem 'devise', '~> 4.9.2'
+gem 'acts_as_commentable_with_threading'
+

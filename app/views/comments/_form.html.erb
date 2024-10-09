@@ -1,0 +1,9 @@
+<%= form_with(model: [commentable, Comment.new], url: comments_path(commentable_type: commentable.class.name, commentable_id: commentable.id), local: true) do |f| %>
+  <%= f.text_area :body, placeholder: 'Add a comment...' %>
+  <%= f.hidden_field :parent_id, value: parent_comment_id if parent_comment_id %>
+  <%= f.submit 'Add' %>
+<% end %>
+
+
+
+
