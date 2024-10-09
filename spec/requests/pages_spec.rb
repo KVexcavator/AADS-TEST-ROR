@@ -25,7 +25,7 @@ RSpec.describe "Pages", type: :request do
       it "unsubscribes from a user" do
         delete unsubscribe_user_path(user_to_follow)
         expect(user.followed_users).not_to include(user_to_follow)
-        expect(response).to redirect_to(pages_index_path) # Redirect to pages index
+        expect(response).to redirect_to(pages_index_path)
       end
     end
   end

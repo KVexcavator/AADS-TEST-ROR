@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
-  # Create a user and a post to be used in the tests
   let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.create(:post, user: user) }
 
   before do
-    # Simulate user login
     sign_in user
   end
 
