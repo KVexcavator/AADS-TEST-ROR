@@ -3,4 +3,17 @@
   <%= link_to 'Sign in', new_user_session_path %>
 <% else %>
   <%= link_to 'View Posts', posts_path, class: 'btn btn-primary' %>
+  <br />
+  <br />
+  <h1>Users</h1>
+  <% @users.each do |user| %>
+    <div>
+      <p><%= user.nickname %></p>
+      <% if current_user.followed_users.include?(user) %>
+        <%= button_to 'Unsubscribe', unsubscribe_user_path(user), method: :delete %>
+      <% else %>
+        <%= button_to 'Subscribe', subscribe_user_path(user), method: :post %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
