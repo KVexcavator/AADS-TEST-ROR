@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   it { should validate_presence_of(:nickname) }
   it { should validate_uniqueness_of(:nickname) }
+  it { should have_many(:posts) }
+  it { should have_and_belong_to_many(:followers).class_name('User') }
+  it { should have_and_belong_to_many(:followed_users).class_name('User') }
 
   context 'with valid attributes' do
     it 'is valid with a unique nickname' do

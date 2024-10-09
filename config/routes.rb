@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  root 'pages#index'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  root 'pages#index'
+  resources :posts
+  
   get 'pages/index'
 end
